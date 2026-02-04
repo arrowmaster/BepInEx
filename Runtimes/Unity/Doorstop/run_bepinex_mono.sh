@@ -44,10 +44,6 @@ dll_search_path_override="BepInEx/core"
 # If 1, Mono debugger server will be enabled
 debug_enable="0"
 
-# When debug_enabled is 1, this option specifies whether Doorstop should initialize the debugger server
-# If you experience crashes when starting the debugger on debug UnityPlayer builds, try setting this to 0
-debug_start_server="0"
-
 # When debug_enabled is 1, specifies the address to use for the debugger server
 debug_address="127.0.0.1:10000"
 
@@ -264,11 +260,6 @@ while [ $i -lt $max ]; do
             shift
             i=$((i+1))
         ;;
-        --doorstop-mono-debug-start-server)
-            debug_start_server="$(doorstop_bool "$2")"
-            shift
-            i=$((i+1))
-        ;;
         --doorstop-mono-debug-suspend)
             debug_suspend="$(doorstop_bool "$2")"
             shift
@@ -306,7 +297,6 @@ export DOORSTOP_BOOT_CONFIG_OVERRIDE="$boot_config_override"
 export DOORSTOP_IGNORE_DISABLED_ENV="$ignore_disable_switch"
 export DOORSTOP_MONO_DLL_SEARCH_PATH_OVERRIDE="$dll_search_path_override"
 export DOORSTOP_MONO_DEBUG_ENABLED="$debug_enable"
-export DOORSTOP_MONO_DEBUG_START_SERVER="$debug_start_server"
 export DOORSTOP_MONO_DEBUG_ADDRESS="$debug_address"
 export DOORSTOP_MONO_DEBUG_SUSPEND="$debug_suspend"
 export DOORSTOP_CLR_RUNTIME_CORECLR_PATH="$coreclr_path.$lib_extension"
